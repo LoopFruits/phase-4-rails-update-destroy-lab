@@ -9,7 +9,7 @@ class PlantsController < ApplicationController
 
   # GET /plants/:id
   def show
-    plant = Plant.find_by(id: params[:id])
+    plant = find_plant
     render json: plant
   end
 
@@ -40,9 +40,8 @@ class PlantsController < ApplicationController
     params.permit(:name, :image, :price, :is_in_stock)
   end
 
-  def find_plant 
-    #issue here, used find at first, then realized I had to use find_by to find the matching id
-    Plant.find_by(id: params[:id])
+  def find_plant
+    Plant.find(params[:id])
   end
 
  
